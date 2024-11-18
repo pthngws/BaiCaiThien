@@ -7,10 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SignUpDto {
-    private  String name;
-    private String username;
-    private String email;
+public class LoginUserModel {
+    private String usernameOrEmail;
     private String password;
-    private boolean enabled;
 }
