@@ -1,10 +1,11 @@
 package com.phithang.springsecurityjwt.service;
 
-import lombok.Value;
+import com.phithang.springsecurityjwt.entity.Users;
 import org.springframework.stereotype.Service;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,11 +33,11 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
-    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
+    public String generateToken(Map<String, Object> extraClaims, Users userDetails) {
         return buildToken(extraClaims, userDetails, jwtExpiration);
     }
 
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(Users userDetails) {
         return generateToken(new HashMap<>(), userDetails);
 
     }
@@ -45,7 +46,7 @@ public class JwtService {
         return jwtExpiration;
     }
 
-    private String buildToken(Map<String, Object> extraClaims, UserDetails userDetails, long expiration) {
+    private String buildToken(Map<String, Object> extraClaims, Users userDetails, long expiration) {
         return Jwts.builder()
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
